@@ -3,7 +3,7 @@ import { Todo } from "../types";
 
 interface useFormProps {
     initialState: Todo;
-    onNewTodo: React.Dispatch<React.SetStateAction<Todo[]>>;
+    onNewTodo: (todo: Todo) => void;
 }
 
 export const useForm = ({ initialState, onNewTodo }: useFormProps) => {
@@ -15,7 +15,8 @@ export const useForm = ({ initialState, onNewTodo }: useFormProps) => {
         if (formValue.title.length <= 3)
             return console.log("Debe estar mas lleno");
 
-        onNewTodo((todos) => [formValue, ...todos]);
+        onNewTodo(formValue);
+
         setFormValue({
             id: null,
             title: "",

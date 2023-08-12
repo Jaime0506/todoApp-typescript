@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
-import { Form, TodoList } from "./components";
+import { useEffect } from "react";
 
-import { Todo } from "./types";
+import { Form, TodoList } from "./components";
+import { useTodosStore } from "./hooks/useTodosStore";
 
 const TodoApp = () => {
-    const [todos, setTodos] = useState<Todo[]>([])
+    // const [todos, setTodos] = useState<Todo[]>([])
+    const { todos, onAddNewTodo } = useTodosStore()
 
     useEffect(() => {
         console.log(todos)
@@ -19,7 +20,7 @@ const TodoApp = () => {
                     </h1>
                 </section>
 
-                <Form onNewTodo={setTodos}/>
+                <Form onNewTodo={onAddNewTodo}/>
                 <TodoList todos={todos}/>
             </div>
         </main>

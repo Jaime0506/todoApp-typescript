@@ -4,7 +4,7 @@ import { useForm } from "../hooks";
 import { Todo } from "../types";
 
 interface FormProps {
-    onNewTodo: React.Dispatch<React.SetStateAction<Todo[]>>;
+    onNewTodo: (todo: Todo) => void
 }
 
 const INITIAL_STATE = {

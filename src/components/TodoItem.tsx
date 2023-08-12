@@ -25,9 +25,8 @@ export const TodoItem = ({ todo }: TodoItemProps) => {
             <Checkbox
                 color="success"
                 radius="full"
-                // key={todo.id}
                 lineThrough
-                onClick={() => console.log(todo.title.length)}
+                onClick={() => console.log("Me seleccionaron")}
             >
                 {todo.title.length > 40
                     ? todo.title.substring(0, 35) + "..."

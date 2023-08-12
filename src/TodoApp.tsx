@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { Form } from "./components";
+import { Form, TodoList } from "./components";
+
 import { Todo } from "./types";
-import { TodoList } from "./components/TodoList";
 
 const TodoApp = () => {
     const [todos, setTodos] = useState<Todo[]>([])
@@ -11,8 +11,8 @@ const TodoApp = () => {
     },[todos])
 
     return (
-        <div className="mx-auto bg-slate-50 min-h-screen flex flex-col justify-center items-center">
-            <main className="w-1/2 bg-white flex flex-col justify-center items-center rounded-md shadow-lg">
+        <main className="mx-auto bg-slate-50 min-h-screen flex flex-col justify-center items-center">
+            <div className="w-1/2 bg-white flex flex-col justify-center items-center rounded-md shadow-lg">
                 <section className="bg-slate-200 p-4 rounded-t-md container">
                     <h1 className="font-mono font-bold text-2xl">
                         Todo App 👌
@@ -21,8 +21,8 @@ const TodoApp = () => {
 
                 <Form onNewTodo={setTodos}/>
                 <TodoList todos={todos}/>
-            </main>
-        </div>
+            </div>
+        </main>
     );
 };
 

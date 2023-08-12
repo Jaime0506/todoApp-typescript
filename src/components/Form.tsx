@@ -1,43 +1,21 @@
-import { useState } from 'react'
-import { Input } from '@nextui-org/react';
+import { Input } from "@nextui-org/react";
 
-import { Todo } from '../types';
+import { useForm } from "../hooks";
+import { Todo } from "../types";
 
 interface FormProps {
-    onNewTodo: React.Dispatch<React.SetStateAction<Todo[]>>
+    onNewTodo: React.Dispatch<React.SetStateAction<Todo[]>>;
 }
 
-export const Form = ({ onNewTodo }: FormProps)  => {
+const INITIAL_STATE = {
+    id: null,
+    title: "",
+    done: false,
+    start: null,
+};
 
-    const [todo, setTodo] = useState<Todo>({
-        id: null,
-        title: "",
-        done: false,
-        start: null
-    })
-
-    const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-
-        if (todo?.title.length <= 3) return console.log("Debe estar mas lleno")
-        // setTodos([ //     todo, //     ...todos, // ])
-        
-        setTodo({
-            id: null,
-            title: "",
-            done: false,
-            start: null
-        })
-
-        onNewTodo((todos) => [todo, ...todos])
-    };
-
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setTodo({
-            ...todo,
-            [event.target.name]: event.target.value
-        })
-    }
+export const Form = ({ onNewTodo }: FormProps) => {
+    const { title, onSubmit, handleInputChange } = useForm({ initialState: INITIAL_STATE, onNewTodo });
 
     return (
         <div className="container rounded-b-md bg-white flex flex-col gap-7 justify-center items-center">
@@ -49,7 +27,7 @@ export const Form = ({ onNewTodo }: FormProps)  => {
                         placeholder="Title todo"
                         className="font-mono"
                         name="title"
-                        value={todo?.title}
+                        value={title}
                         onChange={handleInputChange}
                     />
                 </form>

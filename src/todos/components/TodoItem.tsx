@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Checkbox } from "@nextui-org/react";
 
-import { Todo } from "../types";
+import { Todo } from "../../types";
 
 interface TodoItemProps {
     todo: Todo;

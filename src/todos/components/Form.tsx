@@ -1,7 +1,7 @@
 import { Input } from "@nextui-org/react";
 
-import { useForm } from "../hooks";
-import { Todo } from "../types";
+import { useForm } from "../../hooks";
+import { Todo } from "../../types";
 
 interface FormProps {
     onNewTodo: (todo: Todo) => void

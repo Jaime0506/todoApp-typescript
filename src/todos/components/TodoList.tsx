@@ -1,6 +1,6 @@
 import { AnimatePresence } from "framer-motion";
-import { Todo } from "../types";
-import { TodoItem } from "./";
+import { Todo } from "../../types";
+import { TodoItem } from ".";
 
 interface TodoListProps {
     todos: Todo[];

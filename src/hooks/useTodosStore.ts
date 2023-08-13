@@ -6,8 +6,6 @@ export const useTodosStore = () => {
     const { todos } = useAppSelector(store => store.todosList)
     const dispatch = useAppDispatch()
 
-    console.log(todos)
-
     const onAddNewTodo = (todo: Todo) => {
         dispatch(addNewTodo(todo))
     }

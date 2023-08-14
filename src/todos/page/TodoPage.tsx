@@ -21,7 +21,7 @@ export const TodoPage = () => {
                         Todo App 👌
                     </h1>
                     <Button color="danger" variant="shadow" className="hover:bg-rose-700" onClick={handleLogout}>
-                        Sing Out
+                        Sign Out
                     </Button>
                 </section>
 

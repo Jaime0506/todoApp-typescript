@@ -2,20 +2,22 @@ import { useState } from "react";
 import { Todo } from "../types";
 
 interface useFormProps {
-    initialState: Todo;
-    onNewTodo: (todo: Todo) => void;
+    initialState: Todo
+    onNewTodo: (todo: Todo) => void
+    onUpdateTodo: (todo: Todo) => void
 }
 
-export const useForm = ({ initialState, onNewTodo }: useFormProps) => {
+export const useForm = ({ initialState, onNewTodo, onUpdateTodo }: useFormProps) => {
     const [formValue, setFormValue] = useState<Todo>(initialState);
-
+    console.log(formValue)
+    
     const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         if (formValue.title.length <= 3)
             return console.log("Debe estar mas lleno");
-
-        onNewTodo(formValue);
+            
+        formValue.id ? onUpdateTodo(formValue) : onNewTodo(formValue);
 
         setFormValue({
             id: null,
@@ -32,9 +34,14 @@ export const useForm = ({ initialState, onNewTodo }: useFormProps) => {
         });
     };
 
+    const handleSetValues = (todo: Todo) => {
+        setFormValue({...todo})
+    }
+
     return {
         ...formValue,
         onSubmit,
         handleInputChange,
+        handleSetValues,
     };
 };

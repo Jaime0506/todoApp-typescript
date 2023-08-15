@@ -2,13 +2,18 @@ import { AppDispatch } from "../store"
 import { supabase } from "../../supabase";
 import { checking, login, logout } from "./authSlice";
 
-interface onRegisterProps {
-    user: string
+interface RegisterProps {
+    user: string | null,
     email: string
     password: string
 }
 
-export const onRegister = ({ user ,email, password }: onRegisterProps) => {
+interface LoginProps {
+    email: string
+    password: string
+}
+
+export const onRegister = ({ user ,email, password }: RegisterProps) => {
     return async (dispatch: AppDispatch) => {
         dispatch(checking())
 
@@ -40,5 +45,20 @@ export const onLogout = () => {
         if (error) return console.log(error)
 
         return dispatch(logout())
+    }
+}
+
+export const onLogin = ({ email, password }: LoginProps) => {
+    return async (dispatch: AppDispatch) => {
+        dispatch(checking())
+        
+        const { data, error } = await supabase.auth.signInWithPassword({
+            email,
+            password
+        })
+
+        if (error) return console.log(error)
+
+        if (data.user) return dispatch(login(data.user))
     }
 }

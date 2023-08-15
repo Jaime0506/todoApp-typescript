@@ -3,12 +3,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 import { Button, Input } from "@nextui-org/react";
-// import { useAppDispatch } from "../../hooks";
-// import { onRegister } from "../../store/auth/thunks";
+import { useAppDispatch } from "../../hooks";
+
 import { Link } from "react-router-dom";
+import { onLogin } from "../../store/auth/thunks";
 
 export const LoginPage = () => {
-    // const dispatch = useAppDispatch();
+    const dispatch = useAppDispatch();
     const [isVisible, setIsVisible] = useState(false);
     const [formValues, setFormValues] = useState({
         email: "",
@@ -26,7 +27,7 @@ export const LoginPage = () => {
 
     const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        // dispatch(onRegister({ ...formValues }));
+        dispatch(onLogin({ ...formValues }));
     };
 
     return (
@@ -73,7 +74,7 @@ export const LoginPage = () => {
                 </section>
                 <footer className="pl-7 pr-6 pb-6">
                     <p className="font-mono text-xs">
-                        You are not registered? <Link className="text-green-600 underline hover:text-green-500 font-bold" to="/auth/register" >Sing up</Link>
+                        You are not registered? <Link className="text-green-600 underline hover:text-green-500 font-bold" to="/auth/register" >Sign up</Link>
                     </p>
                 </footer>
             </div>

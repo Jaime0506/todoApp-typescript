@@ -93,7 +93,7 @@ export const RegisterPage = () => {
                             className="text-green-600 underline hover:text-green-500 font-bold"
                             to="/auth/login"
                         >
-                            Sing in
+                            Sign in
                         </Link>
                     </p>
                 </footer>

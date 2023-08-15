@@ -1,6 +1,7 @@
+import { useEffect } from 'react'
 import { Input } from "@nextui-org/react";
 
-import { useForm } from "../../hooks";
+import { useForm, useTodosStore } from "../../hooks";
 import { Todo } from "../../types";
 
 interface FormProps {
@@ -15,8 +16,16 @@ const INITIAL_STATE = {
 };
 
 export const Form = ({ onNewTodo }: FormProps) => {
-    const { title, onSubmit, handleInputChange } = useForm({ initialState: INITIAL_STATE, onNewTodo });
 
+    const { activeTodo, onUpdateTodo } = useTodosStore()
+
+    const { title, onSubmit, handleInputChange, handleSetValues } = useForm({ initialState: INITIAL_STATE, onNewTodo, onUpdateTodo});
+
+    useEffect(() => {
+        if (activeTodo) handleSetValues({...activeTodo})
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [activeTodo])
+    
     return (
         <div className="container rounded-b-md bg-white flex flex-col gap-7 justify-center items-center">
             <section className="container p-5">

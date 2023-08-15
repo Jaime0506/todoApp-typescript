@@ -10,7 +10,7 @@ export const TodoList = ({ todos }: TodoListProps) => {
     return (
         <section className="container pl-5 pr-5 pb-5 flex flex-col gap-3">
             <AnimatePresence>
-                { todos.map((todo) => <TodoItem key={todo.title} todo={todo} />)}
+                { todos.map((todo) => <TodoItem key={todo.id} todo={todo} />)}
             </AnimatePresence>
         </section>
     );

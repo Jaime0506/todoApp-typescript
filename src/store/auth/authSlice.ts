@@ -1,16 +1,18 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { User } from '@supabase/supabase-js'
+import type { User } from '@supabase/supabase-js'
 
 interface AuthState {
     status: string
-    uid: string | null,
+    uid: string | null
     user: string | null
+    errorMessage: string | null
 }
 
 const initialState: AuthState = {
     status: "checking", // not-authenticated - authenticated - checking
     uid: null,
-    user: null
+    user: null,
+    errorMessage: null
 }
 
 export const authSlice = createSlice({
@@ -27,11 +29,12 @@ export const authSlice = createSlice({
             state.status = "checking"
         },
 
-        logout: (state) => {
+        logout: (state, action: PayloadAction<string | null>) => {
             state.status = "not-authenticated"
             state.uid = null
             state.user = null
-        }
+            state.errorMessage = action.payload ? action.payload : null
+        },
     },
 });
 

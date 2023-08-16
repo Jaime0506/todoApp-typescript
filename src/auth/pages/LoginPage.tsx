@@ -1,15 +1,14 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import { Button, Input } from "@nextui-org/react";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
-import { Button, Input } from "@nextui-org/react";
-import { useAppDispatch } from "../../hooks";
-
-import { Link } from "react-router-dom";
-import { onLogin } from "../../store/auth/thunks";
+import { useAuthStore } from "../../hooks";
 
 export const LoginPage = () => {
-    const dispatch = useAppDispatch();
+    const { handleOnLogin } = useAuthStore()
     const [isVisible, setIsVisible] = useState(false);
     const [formValues, setFormValues] = useState({
         email: "",
@@ -27,7 +26,7 @@ export const LoginPage = () => {
 
     const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        dispatch(onLogin({ ...formValues }));
+        handleOnLogin({...formValues})
     };
 
     return (
@@ -56,7 +55,7 @@ export const LoginPage = () => {
                             type={`${isVisible ? "text" : "password"}`}
                             radius="sm"
                             endContent={
-                                <button onClick={onToogle}>
+                                <button onClick={onToogle} type="button">
                                     {isVisible ? (
                                         <FontAwesomeIcon icon={faEyeSlash} />
                                     ) : (

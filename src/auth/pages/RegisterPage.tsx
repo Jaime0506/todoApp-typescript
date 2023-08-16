@@ -1,14 +1,14 @@
 import { useState } from "react";
-import { Button, Input } from "@nextui-org/react";
 import { Link } from "react-router-dom";
+import { Button, Input } from "@nextui-org/react";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import { useAppDispatch, useAppSelector } from "../../hooks";
-import { onRegister } from "../../store/auth/thunks";
+
+import { useAuthStore } from "../../hooks";
 
 export const RegisterPage = () => {
-    const dispatch = useAppDispatch();
-    const { status } = useAppSelector((store) => store.auth);
+    const { status, handleOnRegister } = useAuthStore()
 
     const [isVisible, setIsVisible] = useState(false);
     const [formValues, setFormValues] = useState({
@@ -21,7 +21,7 @@ export const RegisterPage = () => {
 
     const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        dispatch(onRegister({ ...formValues }));
+        handleOnRegister({...formValues})
     };
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -66,7 +66,7 @@ export const RegisterPage = () => {
                             type={`${isVisible ? "text" : "password"}`}
                             onChange={handleInputChange}
                             endContent={
-                                <button onClick={toogleVisible}>
+                                <button onClick={toogleVisible} type="button">
                                     {isVisible ? (
                                         <FontAwesomeIcon icon={faEyeSlash} />
                                     ) : (

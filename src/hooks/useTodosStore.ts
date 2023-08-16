@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from "./useStore"
-import { addNewTodo, setActiveTodo, updateTodo } from "../store/todos"
+import { addNewTodo, clearTodos, setActiveTodo, updateTodo } from "../store/todos"
 import { v4 as uuidv4 } from 'uuid'
 
 import { Todo } from "../types"
@@ -21,12 +21,17 @@ export const useTodosStore = () => {
         dispatch(setActiveTodo(todo))
     }
 
+    const onClearTodos = () => {
+        dispatch(clearTodos())
+    }
+
     return {
         todos,
         activeTodo,
 
         onAddNewTodo,
         onUpdateTodo,
-        onSetActiveTodo
+        onSetActiveTodo,
+        onClearTodos,
     }
 }

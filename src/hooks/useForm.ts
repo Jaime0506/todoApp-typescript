@@ -9,7 +9,6 @@ interface useFormProps {
 
 export const useForm = ({ initialState, onNewTodo, onUpdateTodo }: useFormProps) => {
     const [formValue, setFormValue] = useState<Todo>(initialState);
-    console.log(formValue)
     
     const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();

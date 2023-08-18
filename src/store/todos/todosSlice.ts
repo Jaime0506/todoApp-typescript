@@ -35,11 +35,17 @@ export const todosSlice = createSlice({
 
         setActiveTodo: (state, action: PayloadAction<Todo>) => {
             state.activeTodo = {...action.payload }
-        }
+        },
+
+        clearTodos: (state) => {
+            state.todos = []
+            state.activeTodo = null
+        },
+
         // deleteTodo: (state, action: PayloadAction<Todo>) => {
 
         // }
     },
 });
 
-export const { addNewTodo, updateTodo, setActiveTodo } = todosSlice.actions;
+export const { addNewTodo, updateTodo, setActiveTodo, clearTodos } = todosSlice.actions;

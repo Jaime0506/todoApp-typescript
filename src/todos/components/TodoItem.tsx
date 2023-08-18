@@ -15,10 +15,10 @@ interface TodoItemProps {
 
 export const TodoItem = ({ todo }: TodoItemProps) => {
     
-    const { onSetActiveTodo } = useTodosStore()
+    const { handleOnSetActiveTodo } = useTodosStore()
 
     const onEditTodo = () => {
-        onSetActiveTodo(todo)
+        handleOnSetActiveTodo(todo)
     }
 
     return (

@@ -1,32 +1,40 @@
-import { useAppDispatch, useAppSelector } from "./useStore"
-import { addNewTodo, setActiveTodo, updateTodo } from "../store/todos"
 import { v4 as uuidv4 } from 'uuid'
 
-import { Todo } from "../types"
+import { useAppDispatch, useAppSelector } from "./useStore"
+import { onAddNewTodo, onClearTodos, onSetActiveTodo, onUpdateTodo } from "../store/todos/thunks"
+
+import type { Todo } from "../types"
 
 export const useTodosStore = () => {
     const { todos, activeTodo } = useAppSelector(store => store.todosList)
     const dispatch = useAppDispatch()
 
-    const onAddNewTodo = (todo: Todo) => {
+    const handleOnNewTodo = (todo: Todo) => {
         todo.id = uuidv4()
-        dispatch(addNewTodo(todo))
+        todo.start = new Date()
+
+        dispatch(onAddNewTodo(todo))
     }
 
-    const onUpdateTodo = (todo: Todo) => {
-        dispatch(updateTodo(todo))
+    const handleOnUpdateTodo = (todo: Todo) => {
+        dispatch(onUpdateTodo(todo))
     }
 
-    const onSetActiveTodo = (todo: Todo) => {
-        dispatch(setActiveTodo(todo))
+    const handleOnSetActiveTodo = (todo: Todo) => {
+        dispatch(onSetActiveTodo(todo))
+    }
+
+    const handleOnClearTodos = () => {
+        dispatch(onClearTodos())
     }
 
     return {
         todos,
         activeTodo,
 
-        onAddNewTodo,
-        onUpdateTodo,
-        onSetActiveTodo
+        handleOnNewTodo,
+        handleOnUpdateTodo,
+        handleOnSetActiveTodo,
+        handleOnClearTodos
     }
 }

@@ -1,16 +1,16 @@
 import { Button } from "@nextui-org/react";
 
 import { Form, TodoList } from "../components";
-import { useAppDispatch, useTodosStore } from "../../hooks";
-import { onLogout } from "../../store/auth/thunks";
+import { useTodosStore, useAuthStore } from "../../hooks";
 
 export const TodoPage = () => {
 
-    const { todos, onAddNewTodo } = useTodosStore();
-    const dispatch = useAppDispatch()
+    const { todos, handleOnClearTodos } = useTodosStore();
+    const { handleOnLogout } = useAuthStore()
     
     const handleLogout = () => {
-        dispatch(onLogout())
+        handleOnLogout()
+        handleOnClearTodos()
     }
 
     return (
@@ -25,7 +25,7 @@ export const TodoPage = () => {
                     </Button>
                 </section>
 
-                <Form onNewTodo={onAddNewTodo} />
+                <Form />
                 <TodoList todos={todos} />
             </div>
         </main>

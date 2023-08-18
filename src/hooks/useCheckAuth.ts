@@ -1,7 +1,8 @@
 import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "."
 import { supabase } from "../supabase";
-import { checking, login, logout } from "../store/auth/authSlice";
+
+import { useAppDispatch, useAppSelector } from "./"
+import { checking, login, logout } from "../store/auth";
 
 export const useCheckAuth = () => {
     const { status } = useAppSelector(state => state.auth)
@@ -12,7 +13,7 @@ export const useCheckAuth = () => {
             dispatch(checking());
 
             if (!session?.user) {
-                dispatch(logout());
+                dispatch(logout(null));
 
                 return;
             }

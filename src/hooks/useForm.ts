@@ -3,13 +3,12 @@ import { Todo } from "../types";
 
 interface useFormProps {
     initialState: Todo
-    onNewTodo: (todo: Todo) => void
-    onUpdateTodo: (todo: Todo) => void
+    handleOnNewTodo: (todo: Todo) => void
+    handleOnUpdateTodo: (todo: Todo) => void
 }
 
-export const useForm = ({ initialState, onNewTodo, onUpdateTodo }: useFormProps) => {
+export const useForm = ({ initialState, handleOnNewTodo, handleOnUpdateTodo }: useFormProps) => {
     const [formValue, setFormValue] = useState<Todo>(initialState);
-    console.log(formValue)
     
     const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -17,7 +16,7 @@ export const useForm = ({ initialState, onNewTodo, onUpdateTodo }: useFormProps)
         if (formValue.title.length <= 3)
             return console.log("Debe estar mas lleno");
             
-        formValue.id ? onUpdateTodo(formValue) : onNewTodo(formValue);
+        formValue.id ? handleOnUpdateTodo(formValue) : handleOnNewTodo(formValue);
 
         setFormValue({
             id: null,

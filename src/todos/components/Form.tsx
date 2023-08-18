@@ -2,11 +2,6 @@ import { useEffect } from 'react'
 import { Input } from "@nextui-org/react";
 
 import { useForm, useTodosStore } from "../../hooks";
-import { Todo } from "../../types";
-
-interface FormProps {
-    onNewTodo: (todo: Todo) => void
-}
 
 const INITIAL_STATE = {
     id: null,
@@ -15,11 +10,11 @@ const INITIAL_STATE = {
     start: null,
 };
 
-export const Form = ({ onNewTodo }: FormProps) => {
+export const Form = () => {
 
-    const { activeTodo, onUpdateTodo } = useTodosStore()
+    const { activeTodo, handleOnNewTodo, handleOnUpdateTodo } = useTodosStore()
 
-    const { title, onSubmit, handleInputChange, handleSetValues } = useForm({ initialState: INITIAL_STATE, onNewTodo, onUpdateTodo});
+    const { title, onSubmit, handleInputChange, handleSetValues } = useForm({ initialState: INITIAL_STATE, handleOnNewTodo, handleOnUpdateTodo});
 
     useEffect(() => {
         if (activeTodo) handleSetValues({...activeTodo})

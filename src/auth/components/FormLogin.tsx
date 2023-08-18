@@ -6,12 +6,7 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 import { useAuthStore } from "../../hooks";
 import { validationEmail } from "../../helpers";
-
-interface ErrosForm {
-    user?: string | null;
-    email: string | null;
-    password: string | null;
-}
+import { ErrosForm } from "../../types";
 
 const INITIAL_STATE = {
     email: null,
@@ -22,7 +17,7 @@ export const FormLogin = () => {
     const { handleOnLogin } = useAuthStore();
 
     const [isVisible, setIsVisible] = useState(false);
-    const [errors, setErrors] = useState<ErrosForm>(INITIAL_STATE);
+    const [errors, setErrors] = useState<ErrosForm>({...INITIAL_STATE});
 
     const [formValues, setFormValues] = useState({
         email: "",
@@ -40,31 +35,27 @@ export const FormLogin = () => {
 
     const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        setErrors(INITIAL_STATE);
-
         const ErrorTemp = {...errors}
         
-        console.log(validationEmail(formValues.email))
-
         if (!(formValues.email.length > 0)) {
             ErrorTemp.email = "The email cannot be empty"
+        } else if (!validationEmail(formValues.email)) {
+            ErrorTemp.email = "The email is not valid"
+        } else {
+            ErrorTemp.email = null
         }
 
-        if (!validationEmail(formValues.email)) {
-            ErrorTemp.password = "The email is not valid"
+        if (!(formValues.password.length > 0)) {
+            ErrorTemp.password = "The password connot be empty"
+        } else if (!(formValues.password.length >= 6)) {
+            ErrorTemp.password = "The password required minimum six characters"
+        } else {
+            ErrorTemp.password = null
         }
+
+        if (ErrorTemp.email === null && ErrorTemp.password === null) return handleOnLogin({ ...formValues });
 
         setErrors(ErrorTemp)
-
-        // if (!(formValues.password.length >= 6)) {
-        //     setErrors({
-        //         ...errors,
-        //         ["password"]: "The password required minimum six characters"
-        //     })
-        // }
-
-
-        // if (errors.email === null && errors.password === null) handleOnLogin({ ...formValues });
     };
 
     return (

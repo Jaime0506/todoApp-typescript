@@ -5,12 +5,12 @@ import { useTodosStore, useAuthStore } from "../../hooks";
 
 export const TodoPage = () => {
 
-    const { todos, onAddNewTodo, onClearTodos } = useTodosStore();
+    const { todos, handleOnClearTodos } = useTodosStore();
     const { handleOnLogout } = useAuthStore()
     
     const handleLogout = () => {
         handleOnLogout()
-        onClearTodos()
+        handleOnClearTodos()
     }
 
     return (
@@ -25,7 +25,7 @@ export const TodoPage = () => {
                     </Button>
                 </section>
 
-                <Form onNewTodo={onAddNewTodo} />
+                <Form />
                 <TodoList todos={todos} />
             </div>
         </main>

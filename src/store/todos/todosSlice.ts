@@ -1,16 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
 
-import { Todo } from "../../types";
+import type { PayloadAction } from "@reduxjs/toolkit";
+import type { Todo } from "../../types";
 
 interface TodosState {
     todos: Todo[]
     activeTodo: Todo | null
+    isLoaded: boolean
 }
 
 const initialState: TodosState = {
     todos: [],
-    activeTodo: null
+    activeTodo: null,
+    isLoaded: false
 };
 
 export const todosSlice = createSlice({
@@ -18,7 +20,8 @@ export const todosSlice = createSlice({
     initialState: initialState,
     reducers: {
         addNewTodo: (state, action: PayloadAction<Todo>) => {
-            state.todos.push(action.payload);
+            state.isLoaded = true
+            state.todos.unshift(action.payload);
         },
 
         updateTodo: (state, action: PayloadAction<Todo>) => {
@@ -44,8 +47,17 @@ export const todosSlice = createSlice({
 
         deleteTodo: (state, action: PayloadAction<Todo>) => {
             state.todos = state.todos.filter((todo) =>  todo.id !== action.payload.id)
+        },
+
+        loadingTodos: (state, action: PayloadAction<Todo[]>) => {
+            state.isLoaded = true
+            state.todos = action.payload
+        },
+
+        setIsLoaded: (state) => {
+            state.isLoaded = false
         }
     },
 });
 
-export const { addNewTodo, updateTodo, setActiveTodo, deleteTodo, clearTodos } = todosSlice.actions;
+export const { addNewTodo, updateTodo, setActiveTodo, deleteTodo, clearTodos, loadingTodos, setIsLoaded } = todosSlice.actions;

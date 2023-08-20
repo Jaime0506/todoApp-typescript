@@ -1,10 +1,11 @@
-import { addNewTodo, clearTodos, deleteTodo, setActiveTodo, updateTodo } from "./";
+import { addNewTodo, clearTodos, deleteTodo, loadingTodos, setActiveTodo, setIsLoaded, updateTodo } from "./";
 import { AppDispatch, RootState } from "..";
 import { supabase } from "../../supabase";
 import type { Todo } from "../../types";
 
 export const onAddNewTodo = (todo: Todo) => {
     return async (dispatch: AppDispatch, getState: () => RootState) => {
+        dispatch(setIsLoaded())
         const { uid } = getState().auth
 
         const { error } = await supabase.from("todos").insert({
@@ -55,3 +56,14 @@ export const onClearTodos = () => {
         dispatch(clearTodos());
     };
 };
+
+export const onLoadingTodos = (id: string | null) => {
+    return async(dispatch: AppDispatch) => {
+        dispatch(setIsLoaded())
+        const { data, error } = await supabase.from("todos").select().eq("create_by", id)
+
+        if (error) return console.log(error)
+
+        dispatch(loadingTodos(data))
+    }
+}

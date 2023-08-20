@@ -1,13 +1,14 @@
-// import { useState } from "react";
 import { motion } from "framer-motion";
 import { Checkbox } from "@nextui-org/react";
 
-import { Todo } from "../../types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { icon } from "@fortawesome/fontawesome-svg-core";
 import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+
 import { useTodosStore } from "../../hooks";
+
+import type { Todo } from "../../types";
 
 interface TodoItemProps {
     todo: Todo;
@@ -15,11 +16,7 @@ interface TodoItemProps {
 
 export const TodoItem = ({ todo }: TodoItemProps) => {
     
-    const { handleOnSetActiveTodo } = useTodosStore()
-
-    const onEditTodo = () => {
-        handleOnSetActiveTodo(todo)
-    }
+    const { handleOnSetActiveTodo, handleOnDeleteTodo } = useTodosStore()
 
     return (
         <motion.div
@@ -39,9 +36,7 @@ export const TodoItem = ({ todo }: TodoItemProps) => {
             <Checkbox
                 color="success"
                 radius="full"
-                // className="bg-green-500"
                 lineThrough
-                // onClick={}
             >
                 {todo.title.length > 20
                     ? todo.title.substring(0, 20) + "..."
@@ -51,11 +46,12 @@ export const TodoItem = ({ todo }: TodoItemProps) => {
                 <FontAwesomeIcon
                     icon={icon(faPenToSquare)}
                     className="text-gray-600 hover:cursor-pointer"
-                    onClick={onEditTodo}
+                    onClick={() => handleOnSetActiveTodo(todo)}
                 />
                 <FontAwesomeIcon
                     icon={icon(faTrashCan)}
                     className="text-red-500 hover:cursor-pointer"
+                    onClick={() => handleOnDeleteTodo(todo)}
                 />
             </div>
         </motion.div>

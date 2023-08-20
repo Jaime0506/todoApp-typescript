@@ -1,4 +1,4 @@
-import { addNewTodo, clearTodos, setActiveTodo, updateTodo } from ".";
+import { addNewTodo, clearTodos, deleteTodo, setActiveTodo, updateTodo } from "./";
 import { AppDispatch, RootState } from "..";
 import { supabase } from "../../supabase";
 import type { Todo } from "../../types";
@@ -33,6 +33,16 @@ export const onUpdateTodo = (todo: Todo) => {
         dispatch(updateTodo(todo));
     };
 };
+
+export const onDeleteTodo = (todo: Todo) => {
+    return async(dispatch: AppDispatch) => {
+        const { error } = await supabase.from("todos").delete().eq("id", todo.id)
+
+        if (error) return console.log(error)
+
+        dispatch(deleteTodo(todo))
+    }
+}
 
 export const onSetActiveTodo = (todo: Todo) => {
     return (dispatch: AppDispatch) => {

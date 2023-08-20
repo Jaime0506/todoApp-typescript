@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Input } from "@nextui-org/react";
+import { CircularProgress, Input } from "@nextui-org/react";
 
 import { useForm, useTodosStore } from "../../hooks";
 
@@ -33,6 +33,11 @@ export const Form = () => {
                         name="title"
                         value={title}
                         onChange={handleInputChange}
+                        endContent={
+                            <div>
+                                 {/* <CircularProgress aria-label='loading...'/> */}
+                            </div>
+                        }
                     />
                 </form>
             </section>

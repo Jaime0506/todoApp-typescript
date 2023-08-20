@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { CircularProgress, Input } from "@nextui-org/react";
+import { Input } from "@nextui-org/react";
 
 import { useForm, useTodosStore } from "../../hooks";
 

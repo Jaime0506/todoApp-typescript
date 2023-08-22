@@ -2,7 +2,7 @@ export interface Todo {
     id: string | null,
     title: string,
     done: boolean,
-    start: Date | null,
+    start: number | null,
 }
 
 export interface Register {

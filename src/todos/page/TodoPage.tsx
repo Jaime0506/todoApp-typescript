@@ -1,12 +1,17 @@
 import { useEffect } from "react";
-import { Button } from "@nextui-org/react";
+import { Button, Divider } from "@nextui-org/react";
 
 import { Form, LoadingTodoSkeleton, TodoList } from "../components";
 import { useTodosStore, useAuthStore } from "../../hooks";
 
 export const TodoPage = () => {
-    const { todos, isLoading, isSaving, handleOnClearTodos, handleOnLoadingTodos } =
-        useTodosStore();
+    const {
+        todos,
+        isLoading,
+        isSaving,
+        handleOnClearTodos,
+        handleOnLoadingTodos,
+    } = useTodosStore();
     const { handleOnLogout, uid } = useAuthStore();
 
     useEffect(() => {
@@ -37,9 +42,37 @@ export const TodoPage = () => {
                 </section>
                 <Form />
                 <LoadingTodoSkeleton show={isLoading} />
-                <LoadingTodoSkeleton show={isSaving}/>
-                
-                <TodoList todos={todos} isLoading={isLoading}/>
+                <LoadingTodoSkeleton show={isSaving} />
+
+                {!isLoading && (
+                    <section className="container pl-5 pr-5 pb-5 flex flex-col gap-3">
+                        <p className="font-semibold text-sm text-gray-400">
+                            Unfilled
+                        </p>
+                        <TodoList
+                            todos={todos}
+                            isLoading={isLoading}
+                            type="unfilled"
+                        />
+                        <Divider className="my-2" />
+                        <p className="font-semibold text-sm text-gray-400">
+                            Completed
+                        </p>
+
+                        <TodoList
+                            todos={todos}
+                            isLoading={isLoading}
+                            type="completed"
+                        />
+                    </section>
+                )}
+                <footer className="p-4 pt-0 w-full d-flex  ">
+                    <div className="bg-gray-300 p-2 rounded-md">
+                        <p className="text-gray-400 text-sm">
+                            Completed tasks are deleted in 3 hours </p>
+
+                    </div>
+                </footer>
             </div>
         </main>
     );

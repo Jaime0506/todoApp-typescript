@@ -1,11 +1,11 @@
 import { useEffect } from "react";
-import { Button, Skeleton } from "@nextui-org/react";
+import { Button } from "@nextui-org/react";
 
-import { Form, TodoList } from "../components";
+import { Form, LoadingTodoSkeleton, TodoList } from "../components";
 import { useTodosStore, useAuthStore } from "../../hooks";
 
 export const TodoPage = () => {
-    const { todos, isLoaded, handleOnClearTodos, handleOnLoadingTodos } =
+    const { todos, isLoading, isSaving, handleOnClearTodos, handleOnLoadingTodos } =
         useTodosStore();
     const { handleOnLogout, uid } = useAuthStore();
 
@@ -36,34 +36,10 @@ export const TodoPage = () => {
                     </Button>
                 </section>
                 <Form />
-                {!isLoaded && (
-                    <section className="container pl-5 pb-5 pr-5 flex flex-row gap-3 items-center justify-center">
-                        <div className="w-full flex flex-row gap-2">
-                            <div className="flex flex-row w-full gap-2">
-                                <Skeleton
-                                    isLoaded={isLoaded}
-                                    className="w-5 rounded-full"
-                                >
-                                    <div className="h-5 w-full rounded-full bg-secondary"></div>
-                                </Skeleton>
-
-                                <Skeleton
-                                    isLoaded={isLoaded}
-                                    className="w-3/5 rounded-lg"
-                                >
-                                    <div className="h-5 w-full rounded-lg bg-secondary"></div>
-                                </Skeleton>
-                            </div>
-                            <Skeleton
-                                isLoaded={isLoaded}
-                                className="w-12 rounded-full"
-                            >
-                                <div className="h-5 w-full rounded-full bg-secondary"></div>
-                            </Skeleton>
-                        </div>
-                    </section>
-                )}
-                { isLoaded && <TodoList todos={todos} />}
+                <LoadingTodoSkeleton show={isLoading} />
+                <LoadingTodoSkeleton show={isSaving}/>
+                
+                <TodoList todos={todos} isLoading={isLoading}/>
             </div>
         </main>
     );

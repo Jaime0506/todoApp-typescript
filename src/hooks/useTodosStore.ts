@@ -6,7 +6,7 @@ import { onAddNewTodo, onClearTodos, onDeleteTodo, onLoadingTodos, onSetActiveTo
 import type { Todo } from "../types"
 
 export const useTodosStore = () => {
-    const { todos, activeTodo, isLoaded } = useAppSelector(store => store.todosList)
+    const { todos, isSaving, activeTodo, isLoading } = useAppSelector(store => store.todosList)
     const dispatch = useAppDispatch()
 
     const handleOnNewTodo = (todo: Todo) => {
@@ -39,7 +39,8 @@ export const useTodosStore = () => {
     return {
         todos,
         activeTodo,
-        isLoaded,
+        isLoading,
+        isSaving,
 
         handleOnNewTodo,
         handleOnUpdateTodo,

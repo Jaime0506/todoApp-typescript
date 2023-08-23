@@ -6,13 +6,15 @@ import type { Todo } from "../../types";
 interface TodosState {
     todos: Todo[]
     activeTodo: Todo | null
-    isLoaded: boolean
+    isLoading: boolean
+    isSaving: boolean
 }
 
 const initialState: TodosState = {
     todos: [],
     activeTodo: null,
-    isLoaded: false
+    isLoading: false,
+    isSaving: false
 };
 
 export const todosSlice = createSlice({
@@ -20,7 +22,7 @@ export const todosSlice = createSlice({
     initialState: initialState,
     reducers: {
         addNewTodo: (state, action: PayloadAction<Todo>) => {
-            state.isLoaded = true
+            state.isSaving = false
             state.todos.unshift(action.payload);
         },
 
@@ -50,14 +52,18 @@ export const todosSlice = createSlice({
         },
 
         loadingTodos: (state, action: PayloadAction<Todo[]>) => {
-            state.isLoaded = true
+            state.isLoading = false
             state.todos = action.payload
         },
 
         setIsLoaded: (state) => {
-            state.isLoaded = false
+            state.isLoading = true
+        },
+        
+        setIsSavingTodo: (state) => {
+            state.isSaving = true
         }
     },
 });
 
-export const { addNewTodo, updateTodo, setActiveTodo, deleteTodo, clearTodos, loadingTodos, setIsLoaded } = todosSlice.actions;
+export const { addNewTodo, updateTodo, setActiveTodo, deleteTodo, clearTodos, loadingTodos, setIsLoaded, setIsSavingTodo } = todosSlice.actions;

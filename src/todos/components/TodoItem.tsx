@@ -9,6 +9,7 @@ import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { useTodosStore } from "../../hooks";
 
 import type { Todo } from "../../types";
+import { useEffect, useState } from "react";
 
 interface TodoItemProps {
     todo: Todo;
@@ -16,7 +17,20 @@ interface TodoItemProps {
 
 export const TodoItem = ({ todo }: TodoItemProps) => {
     
-    const { handleOnSetActiveTodo, handleOnDeleteTodo } = useTodosStore()
+    const { handleOnSetActiveTodo, handleOnDeleteTodo, handleOnUpdateTodo } = useTodosStore()
+    const [tempTodo, setTempTodo] = useState<Todo>(todo)
+
+    const handleToogleDone = () => {
+        setTempTodo({
+            ...tempTodo,
+            ["done"]: !tempTodo.done
+        })
+    }
+
+    useEffect(() => {
+        if (todo.done !== tempTodo.done) handleOnUpdateTodo(tempTodo)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [tempTodo])
 
     return (
         <motion.div
@@ -25,11 +39,17 @@ export const TodoItem = ({ todo }: TodoItemProps) => {
                 opacity: 0,
                 position: "relative",
             }}
+            exit={{
+                y: -100,
+                opacity: 0,
+                position: "absolute"
+            }}
+
             animate={{ y: 0, opacity: 1 }}
             transition={{
                 type: "spring",
                 stiffness: 240,
-                damping: 13,
+                damping: 40,
             }}
             className="flex flex-row justify-between items-center gap-3"
         >
@@ -37,6 +57,8 @@ export const TodoItem = ({ todo }: TodoItemProps) => {
                 color="success"
                 radius="full"
                 lineThrough
+                isSelected={tempTodo.done}
+                onChange={handleToogleDone}
             >
                 {todo.title.length > 20
                     ? todo.title.substring(0, 20) + "..."

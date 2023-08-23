@@ -1,23 +1,41 @@
+import { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import { Todo } from "../../types";
 import { TodoItem } from ".";
 
+// import { Divider } from "@nextui-org/react";
+
 interface Props {
     todos: Todo[];
-    isLoading: boolean
+    isLoading: boolean;
+    type: "completed" | "unfilled";
 }
 
-export const TodoList = ({ todos, isLoading }: Props) => {
+export const TodoList = ({ todos, isLoading, type }: Props) => {
+    const [todosFiltered, setTodosFiltered] = useState<Todo[]>([]);
+
+    useEffect(() => {
+        if (type === "completed") {
+            const tempTodos = todos.filter((todo) => todo.done === true);
+
+            setTodosFiltered(tempTodos);
+        }
+
+        if (type === "unfilled") {
+            const tempTodos = todos.filter((todo) => todo.done === false);
+
+            setTodosFiltered(tempTodos);
+        }
+    }, [todos, type]);
+
     return (
         <>
             {!isLoading && (
-                <section className="container pl-5 pr-5 pb-5 flex flex-col gap-3">
-                    <AnimatePresence>
-                        {todos.map((todo) => (
-                            <TodoItem key={todo.id} todo={todo} />
-                        ))}
-                    </AnimatePresence>
-                </section>
+                <AnimatePresence>
+                    {todosFiltered.map((todo) => (
+                        <TodoItem key={todo.id} todo={todo} />
+                    ))}
+                </AnimatePresence>
             )}
         </>
     );

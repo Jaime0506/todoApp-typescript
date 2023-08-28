@@ -7,10 +7,10 @@ const INITIAL_STATE = {
     id: null,
     title: "",
     done: false,
-    start: null,
+    create_at: 0,
 };
 
-export const Form = () => {
+export const TodoForm = () => {
 
     const { activeTodo, handleOnNewTodo, handleOnUpdateTodo } = useTodosStore()
 
@@ -33,11 +33,6 @@ export const Form = () => {
                         name="title"
                         value={title}
                         onChange={handleInputChange}
-                        endContent={
-                            <div>
-                                 {/* <CircularProgress aria-label='loading...'/> */}
-                            </div>
-                        }
                     />
                 </form>
             </section>

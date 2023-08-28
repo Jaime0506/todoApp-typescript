@@ -5,7 +5,7 @@ interface Props {
     show: boolean
 }
 
-export const LoadingTodoSkeleton = memo(({ show }: Props) => {
+export const TodoLoadingSkeleton = memo(({ show }: Props) => {
     
     return (
         <>

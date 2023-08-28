@@ -2,6 +2,7 @@ import { addNewTodo, clearTodos, deleteTodo, loadingTodos, setActiveTodo, setIsL
 import { AppDispatch, RootState } from "..";
 import { supabase } from "../../supabase";
 import type { Todo } from "../../types";
+import { quickShort } from "../../helpers";
 
 export const onAddNewTodo = (todo: Todo) => {
     return async (dispatch: AppDispatch, getState: () => RootState) => {
@@ -13,7 +14,7 @@ export const onAddNewTodo = (todo: Todo) => {
             title: todo.title,
             done: todo.done,
             create_by: uid,
-            create_at: todo.start
+            create_at: todo.create_at
         });
 
         if (error) return console.log(error)
@@ -64,6 +65,6 @@ export const onLoadingTodos = (id: string | null) => {
 
         if (error) return console.log(error)
 
-        dispatch(loadingTodos(data))
+        dispatch(loadingTodos(quickShort(data)))
     }
 }

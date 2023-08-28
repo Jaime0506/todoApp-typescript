@@ -1,12 +1,11 @@
 import { useEffect } from "react";
-import { Button, Divider } from "@nextui-org/react";
+import { Button } from "@nextui-org/react";
 
-import { Form, LoadingTodoSkeleton, TodoList } from "../components";
+import { TodoForm, TodoLoadingSkeleton, Todos, TodosFooter } from "../components";
 import { useTodosStore, useAuthStore } from "../../hooks";
 
 export const TodoPage = () => {
     const {
-        todos,
         isLoading,
         isSaving,
         handleOnClearTodos,
@@ -40,44 +39,13 @@ export const TodoPage = () => {
                         Sign Out
                     </Button>
                 </section>
-                <Form />
-                <LoadingTodoSkeleton show={isLoading} />
-                <LoadingTodoSkeleton show={isSaving} />
+                <TodoForm />
+                
+                <TodoLoadingSkeleton show={isLoading} />
+                <TodoLoadingSkeleton show={isSaving} />
 
-                {!isLoading && (
-                    <section className="container pl-5 pr-5 pb-5 flex flex-col gap-3">
-                        <p className="font-semibold text-sm text-gray-400">
-                            Unfilled
-                        </p>
-
-                        <div className="flex flex-col gap-3">
-                            <TodoList
-                                todos={todos}
-                                isLoading={isLoading}
-                                type="unfilled"
-                            />
-                        </div>
-                        <Divider className="my-2" />
-                        <p className="font-semibold text-sm text-gray-400">
-                            Completed
-                        </p>
-
-                        <div className="flex flex-col gap-3">
-                            <TodoList
-                                todos={todos}
-                                isLoading={isLoading}
-                                type="completed"
-                            />
-                        </div>
-                    </section>
-                )}
-                <footer className="p-4 pt-0 w-full d-flex  ">
-                    <div className="bg-gray-300 p-2 rounded-md">
-                        <p className="text-gray-400 text-sm">
-                            Completed tasks are deleted in 3 hours{" "}
-                        </p>
-                    </div>
-                </footer>
+                <Todos />
+                <TodosFooter />
             </div>
         </main>
     );

@@ -7,11 +7,10 @@ import { TodoItem } from ".";
 
 interface Props {
     todos: Todo[];
-    isLoading: boolean;
     type: "completed" | "unfilled";
 }
 
-export const TodoList = ({ todos, isLoading, type }: Props) => {
+export const TodoList = ({ todos, type }: Props) => {
     const [todosFiltered, setTodosFiltered] = useState<Todo[]>([]);
 
     useEffect(() => {
@@ -29,14 +28,12 @@ export const TodoList = ({ todos, isLoading, type }: Props) => {
     }, [todos, type]);
 
     return (
-        <>
-            {!isLoading && (
-                <AnimatePresence>
-                    {todosFiltered.map((todo) => (
-                        <TodoItem key={todo.id} todo={todo} type={type} />
-                    ))}
-                </AnimatePresence>
-            )}
-        </>
+        <div className="flex flex-col gap-3">
+            <AnimatePresence>
+                {todosFiltered.map((todo) => (
+                    <TodoItem key={todo.id} todo={todo} type={type} />
+                ))}
+            </AnimatePresence>
+        </div>
     );
 };

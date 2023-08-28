@@ -11,7 +11,7 @@ export const useTodosStore = () => {
 
     const handleOnNewTodo = (todo: Todo) => {
         todo.id = uuidv4()
-        todo.start = new Date().getTime()
+        todo.create_at = new Date().getTime()
 
         dispatch(onAddNewTodo(todo))
     }

@@ -33,7 +33,7 @@ export const TodoList = ({ todos, isLoading, type }: Props) => {
             {!isLoading && (
                 <AnimatePresence>
                     {todosFiltered.map((todo) => (
-                        <TodoItem key={todo.id} todo={todo} />
+                        <TodoItem key={todo.id} todo={todo} type={type} />
                     ))}
                 </AnimatePresence>
             )}

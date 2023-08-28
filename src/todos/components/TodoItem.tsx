@@ -13,9 +13,10 @@ import { useEffect, useState } from "react";
 
 interface TodoItemProps {
     todo: Todo;
+    type: "completed" | "unfilled";
 }
 
-export const TodoItem = ({ todo }: TodoItemProps) => {
+export const TodoItem = ({ todo, type }: TodoItemProps) => {
     
     const { handleOnSetActiveTodo, handleOnDeleteTodo, handleOnUpdateTodo } = useTodosStore()
     const [tempTodo, setTempTodo] = useState<Todo>(todo)
@@ -35,12 +36,12 @@ export const TodoItem = ({ todo }: TodoItemProps) => {
     return (
         <motion.div
             initial={{
-                y: 100,
+                y: type === "unfilled" ? -100 : 100,
                 opacity: 0,
                 position: "relative",
             }}
             exit={{
-                y: -100,
+                y: type === "unfilled" ? -100 : 100,
                 opacity: 0,
                 position: "absolute"
             }}
@@ -48,8 +49,8 @@ export const TodoItem = ({ todo }: TodoItemProps) => {
             animate={{ y: 0, opacity: 1 }}
             transition={{
                 type: "spring",
-                stiffness: 240,
-                damping: 40,
+                stiffness: 100,
+                damping: 20,
             }}
             className="flex flex-row justify-between items-center gap-3"
         >

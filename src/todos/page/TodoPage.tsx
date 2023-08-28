@@ -26,7 +26,7 @@ export const TodoPage = () => {
 
     return (
         <main className="mx-auto bg-zinc-200 min-h-screen flex flex-col justify-center items-center pt-20 pb-20">
-            <div className="w-1/2 bg-white flex flex-col justify-center items-center rounded-md shadow-lg">
+            <div className="w-1/2 bg-white flex flex-col justify-center items-center rounded-md shadow-lg transition-height">
                 <section className="bg-slate-300 p-4 rounded-t-md container flex flex-row justify-between items-center">
                     <h1 className="font-mono font-bold text-2xl">
                         Todo App 👌
@@ -49,28 +49,33 @@ export const TodoPage = () => {
                         <p className="font-semibold text-sm text-gray-400">
                             Unfilled
                         </p>
-                        <TodoList
-                            todos={todos}
-                            isLoading={isLoading}
-                            type="unfilled"
-                        />
+
+                        <div className="flex flex-col gap-3">
+                            <TodoList
+                                todos={todos}
+                                isLoading={isLoading}
+                                type="unfilled"
+                            />
+                        </div>
                         <Divider className="my-2" />
                         <p className="font-semibold text-sm text-gray-400">
                             Completed
                         </p>
 
-                        <TodoList
-                            todos={todos}
-                            isLoading={isLoading}
-                            type="completed"
-                        />
+                        <div className="flex flex-col gap-3">
+                            <TodoList
+                                todos={todos}
+                                isLoading={isLoading}
+                                type="completed"
+                            />
+                        </div>
                     </section>
                 )}
                 <footer className="p-4 pt-0 w-full d-flex  ">
                     <div className="bg-gray-300 p-2 rounded-md">
                         <p className="text-gray-400 text-sm">
-                            Completed tasks are deleted in 3 hours </p>
-
+                            Completed tasks are deleted in 3 hours{" "}
+                        </p>
                     </div>
                 </footer>
             </div>

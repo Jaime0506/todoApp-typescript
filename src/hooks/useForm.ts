@@ -22,7 +22,7 @@ export const useForm = ({ initialState, handleOnNewTodo, handleOnUpdateTodo }: u
             id: null,
             title: "",
             done: false,
-            start: null,
+            create_at: 0,
         });
     };
 

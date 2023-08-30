@@ -13,8 +13,7 @@ export const useForm = ({ initialState, handleOnNewTodo, handleOnUpdateTodo }: u
     const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        if (formValue.title.length <= 3)
-            return console.log("Debe estar mas lleno");
+        if (formValue.title.length <= 3) return console.log("Debe estar mas lleno");
             
         formValue.id ? handleOnUpdateTodo(formValue) : handleOnNewTodo(formValue);
 

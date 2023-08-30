@@ -4,7 +4,7 @@ import { onLogin, onLogout, onRegister } from "../store/auth/thunks"
 import type { Login, Register } from "../types"
 
 export const useAuthStore = () => {
-    const { status, uid, user } = useAppSelector(state => state.auth)
+    const { status, uid, user, errorMessage } = useAppSelector(state => state.auth)
     const dispatch = useAppDispatch()
 
     const handleOnRegister = ({ user, email, password }:Register) => {
@@ -23,6 +23,7 @@ export const useAuthStore = () => {
         status,
         uid,
         user,
+        errorMessage,
 
         handleOnRegister,
         handleOnLogin,

@@ -27,6 +27,7 @@ export const authSlice = createSlice({
 
         checking: (state) => {
             state.status = "checking"
+            state.errorMessage = null
         },
 
         logout: (state, action: PayloadAction<string | null>) => {

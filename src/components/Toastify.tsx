@@ -9,11 +9,11 @@ export const Toastify = () => {
     useEffect(() => {
         errorMessage && toast(errorMessage, {
             type: 'error',
-            position: toast.POSITION.BOTTOM_RIGHT,
+            position: toast.POSITION.BOTTOM_CENTER,
             autoClose: 3000,
             closeOnClick: true,
             pauseOnHover: false,
-            theme: "colored"
+            theme: "colored",
         })
     }, [errorMessage])
 

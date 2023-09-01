@@ -1,8 +1,9 @@
 import { addNewTodo, clearTodos, deleteTodo, loadingTodos, setActiveTodo, setIsLoaded, setIsSavingTodo, updateTodo } from "./";
 import { AppDispatch, RootState } from "..";
 import { supabase } from "../../supabase";
-import type { Todo } from "../../types";
 import { quickShort } from "../../helpers";
+
+import type { Todo } from "../../types";
 
 export const onAddNewTodo = (todo: Todo) => {
     return async (dispatch: AppDispatch, getState: () => RootState) => {

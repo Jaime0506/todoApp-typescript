@@ -2,11 +2,12 @@ import { useState } from "react";
 import { Button, Input } from "@nextui-org/react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { icon } from "@fortawesome/fontawesome-svg-core/import.macro";
 
 import { useAuthStore } from "../../hooks";
 import { validationEmail } from "../../helpers";
-import { ErrosForm } from "../../types";
+
+import type { ErrosForm } from "../../types";
 
 const INITIAL_STATE = {
     email: null,
@@ -79,9 +80,9 @@ export const FormLogin = () => {
                 endContent={
                     <button onClick={onToogle} type="button">
                         {isVisible ? (
-                            <FontAwesomeIcon icon={faEyeSlash} />
+                            <FontAwesomeIcon icon={icon({ name: "eye-slash", style: "solid" })} />
                         ) : (
-                            <FontAwesomeIcon icon={faEye} />
+                            <FontAwesomeIcon icon={icon({ name: "eye", style: "solid"})} />
                         )}
                     </button>
                 }

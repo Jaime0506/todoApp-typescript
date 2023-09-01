@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Button } from "@nextui-org/react";
 
-import { TodoForm, TodoLoadingSkeleton, Todos, TodosFooter } from "../components";
+import { TodoForm, TodoLoadingSkeleton, Todos } from "../components";
 import { useTodosStore, useAuthStore } from "../../hooks";
 
 export const TodoPage = () => {
@@ -12,7 +12,7 @@ export const TodoPage = () => {
         handleOnLoadingTodos,
     } = useTodosStore();
     const { handleOnLogout, uid } = useAuthStore();
-
+    
     useEffect(() => {
         handleOnLoadingTodos(uid);
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -24,8 +24,8 @@ export const TodoPage = () => {
     };
 
     return (
-        <main className="mx-auto bg-zinc-200 min-h-screen flex flex-col justify-center items-center pt-20 pb-20">
-            <div className="w-1/2 bg-white flex flex-col justify-center items-center rounded-md shadow-lg transition-height">
+        <div className="mx-auto bg-zinc-200 min-h-screen flex flex-col justify-center items-center pt-20 pb-20">
+            <div className="md:w-[550px] sm:w-[500px] w-3/4 min-w-[330px] bg-white flex flex-col justify-center items-center rounded-md shadow-lg transition-height">
                 <section className="bg-slate-300 p-4 rounded-t-md container flex flex-row justify-between items-center">
                     <h1 className="font-mono font-bold text-2xl">
                         Todo App 👌
@@ -40,13 +40,10 @@ export const TodoPage = () => {
                     </Button>
                 </section>
                 <TodoForm />
-                
                 <TodoLoadingSkeleton show={isLoading} />
                 <TodoLoadingSkeleton show={isSaving} />
-
                 <Todos />
-                <TodosFooter />
             </div>
-        </main>
+        </div>
     );
 };

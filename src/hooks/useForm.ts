@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Todo } from "../types";
+import type { Todo } from "../types";
 
 interface useFormProps {
     initialState: Todo

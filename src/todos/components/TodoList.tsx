@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
-import { Todo } from "../../types";
-import { TodoItem } from ".";
+import { TodoItem } from "./";
 
-// import { Divider } from "@nextui-org/react";
+import type { Todo } from "../../types";
 
 interface Props {
     todos: Todo[];

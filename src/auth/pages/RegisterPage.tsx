@@ -1,5 +1,4 @@
-import { Link } from "react-router-dom";
-import { FormRegister } from "../components";
+import { FooterAuth, FormRegister } from "../components";
 
 export const RegisterPage = () => {
     return (
@@ -11,17 +10,7 @@ export const RegisterPage = () => {
                 <section className="p-6 flex flex-col gap-9">
                     <FormRegister />
                 </section>
-                <footer className="pl-7 pr-6 pb-6">
-                    <p className="font-mono text-xs">
-                        Do you already have an account?{" "}
-                        <Link
-                            className="text-green-600 underline hover:text-green-500 font-bold"
-                            to="/auth/login"
-                        >
-                            Sign in
-                        </Link>
-                    </p>
-                </footer>
+                <FooterAuth type="register" />
             </div>
         </main>
     );

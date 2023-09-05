@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from "./"
-import { onLogin, onLogout, onRegister } from "../store/auth/thunks"
+import { onLogin, onLoginWithGoogle, onLogout, onRegister } from "../store/auth/thunks"
 
 import type { Login, Register } from "../types"
 
@@ -19,6 +19,10 @@ export const useAuthStore = () => {
         dispatch(onLogout())
     }
 
+    const handleOnLoginWithGoogle = () => {
+        dispatch(onLoginWithGoogle())
+    }
+
     return {
         status,
         uid,
@@ -28,5 +32,6 @@ export const useAuthStore = () => {
         handleOnRegister,
         handleOnLogin,
         handleOnLogout,
+        handleOnLoginWithGoogle
     }
 }

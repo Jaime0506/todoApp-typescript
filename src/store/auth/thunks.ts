@@ -50,3 +50,15 @@ export const onLogin = ({ email, password }: Login) => {
         if (data.user) return dispatch(login(data.user));
     };
 };
+
+export const onLoginWithGoogle = () => {
+    return async(dispatch: AppDispatch) => {
+        dispatch(checking())
+
+        const { error } = await supabase.auth.signInWithOAuth({
+            provider: "google",
+        })
+
+        if (error) return dispatch(logout(error.message))
+    }
+}

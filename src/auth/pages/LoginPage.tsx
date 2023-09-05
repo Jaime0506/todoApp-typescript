@@ -1,5 +1,4 @@
-import { Link } from "react-router-dom";
-import { FormLogin } from "../components";
+import { FooterAuth, FormLogin, GoogleButton } from "../components";
 
 export const LoginPage = () => {
     return (
@@ -8,14 +7,9 @@ export const LoginPage = () => {
                 <header className="pt-6 pr-6 pl-6 pb-2">
                     <h1 className="font-bold">Todo App ✅</h1>
                 </header>
-                <section className="p-6 flex flex-col gap-9">
-                    <FormLogin />
-                </section>
-                <footer className="pl-7 pr-6 pb-6">
-                    <p className="font-mono text-xs">
-                        You are not registered? <Link className="text-green-600 underline hover:text-green-500 font-bold" to="/auth/register" >Sign up</Link>
-                    </p>
-                </footer>
+                <FormLogin />
+                <GoogleButton />
+                <FooterAuth type="login" />
             </div>
         </main>
     );

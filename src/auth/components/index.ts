@@ -1,2 +1,5 @@
 export * from './FormLogin'
 export * from './FormRegister'
+export * from './GoogleButton'
+export * from './GoogleIcon'
+export * from './FooterAuth'

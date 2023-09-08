@@ -1,11 +1,27 @@
-# React + TypeScript + Vite
+# TodoApp✅(practica)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Tecnologias usadas
 
-Currently, two official plugins are available:
+- React
+- TypeScript
+- Vite
+- Supabase
+- Tailwind CSS
+- Framer Motion
+- NextUI
+- FontAwesome
+- toastify
+- Redux tool kit
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Sobre el proyecto
+
+Es una aplicacion de tareas (todo) con fines practicos, aplicar lo aprendido con React gracias el curso de **Fernando Herrera** y empezar a usar typescript para mis futuros proyectos personales, ademas creado con el fin de aplicar tecnologias con las cuales no estaba familiarizado.
+
+Se uso **[Supabasde](https://supabase.com) para gestionar una base de datos SQL y el Auth de la aplicacion** ofreciendo authenticacion con Google y un crud basico de las tareas (Create, read, update, delete).
+
+Para las animaciones se uso **Framer Motion**
+
+
 
 ## Expanding the ESLint configuration
 

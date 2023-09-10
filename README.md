@@ -11,10 +11,12 @@
 - NextUI
 - FontAwesome
 - toastify
-- Redux tool kit
+- Redux toolkit
+- Vercel
 
 ## Sobre el proyecto
 
+![Badge finalizado](https://img.shields.io/badge/STATUS-%20FINALIZADO-green)
 
 Es una aplicacion de tareas (todo) con fines practicos, aplicar lo aprendido con React gracias el curso de **Fernando Herrera** y empezar a usar typescript para mis futuros proyectos personales, ademas creado con el fin de aplicar tecnologias con las cuales no estaba familiarizado.
 
@@ -28,29 +30,24 @@ Se uso **[Supabasde](https://supabase.com) para gestionar una base de datos SQL 
 
 Para las animaciones se uso **[Framer Motion](https://www.framer.com/motion/)** con el fin de simplificar las animaciones y conocer lo basico de la tecnologia para futuros proyectos.
 
-![](https://logowik.com/content/uploads/images/framer2146.jpg){width=40%}
+![](https://logowik.com/content/uploads/images/framer2146.jpg)
 
 Para la maquetacion y estilos mas especificos de cada componente se uso **[Tailwind CSS](https://tailwindcss.com/)** por su facilidad de maquetar y adaptar el diseño a diferentes dispositivos (Responsive).
 
+![](https://vabadus.es/images/articulos/64b524021adc5990918944.png)
+
 Como libreria de componentes, pre-estilizados opte por **[NextUI](https://nextui.org/)** ya que es una libreria bastante pequeña con estilos pre-definidos bastante bonitos y facil de adaptar. 
 
+![](https://pbs.twimg.com/media/FKIFaGFXsAEfiaT?format=jpg&name=large)
 
 
-## Expanding the ESLint configuration
+## :hammer:Funcionalidades del proyecto
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- `Funcionalidad 1`: Authenticacion con correo y contraseña (Crear y logearse con un usuario). 
+- `Funcionalidad 2`: Authenticacion con Google (Consumo de la Api de google para realizar la authenticacion de manera rapida)
+- `Funcionalidad 3`: Obtener Tareas pendientes y completadas de acuerdo al usuario ingresado.
+- `Funcionalidad 4`: Crear tareas y eliminarlas en supabase
+- `Funcionalidad 5`: Sincronizacion de las tareas en local y las que se encuentran en supabase.
+- `Funcionalidad 6`: Logout
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Este README es el primero que realizo para documentar un poco el proyecto que he realizado, fue construido como manera de practica y unicamente educativa.

@@ -9,12 +9,16 @@ interface useFormProps {
 
 export const useForm = ({ initialState, handleOnNewTodo, handleOnUpdateTodo }: useFormProps) => {
     const [formValue, setFormValue] = useState<Todo>(initialState);
+    const [errorInput, setErrorInput] = useState("")
     
     const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        if (formValue.title.length <= 3) return console.log("Debe estar mas lleno");
-            
+        if (formValue.title.length <= 3) {
+            return setErrorInput("Debe tener minimo 4 palabras la nota");
+        } else {
+            setErrorInput("")
+        }
         formValue.id ? handleOnUpdateTodo(formValue) : handleOnNewTodo(formValue);
 
         setFormValue({
@@ -38,6 +42,7 @@ export const useForm = ({ initialState, handleOnNewTodo, handleOnUpdateTodo }: u
 
     return {
         ...formValue,
+        errorInput,
         onSubmit,
         handleInputChange,
         handleSetValues,

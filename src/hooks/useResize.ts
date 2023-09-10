@@ -11,6 +11,11 @@ export const useResize = (refComponent: React.RefObject<HTMLDivElement>) => {
     }, [refComponent])
 
     useEffect(() => {
+        const initialWwidth = window.innerWidth;
+        setWidth(initialWwidth)
+    }, [])
+
+    useEffect(() => {
         window.addEventListener('load', handleResize)
         window.addEventListener('resize', handleResize)
 

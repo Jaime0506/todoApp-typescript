@@ -14,7 +14,7 @@ export const TodoForm = () => {
 
     const { activeTodo, handleOnNewTodo, handleOnUpdateTodo } = useTodosStore()
 
-    const { title, onSubmit, handleInputChange, handleSetValues } = useForm({ initialState: INITIAL_STATE, handleOnNewTodo, handleOnUpdateTodo});
+    const { title, onSubmit, handleInputChange, handleSetValues, errorInput } = useForm({ initialState: INITIAL_STATE, handleOnNewTodo, handleOnUpdateTodo});
 
     useEffect(() => {
         if (activeTodo) handleSetValues({...activeTodo})
@@ -31,6 +31,8 @@ export const TodoForm = () => {
                         placeholder="Title todo"
                         className="font-mono"
                         name="title"
+                        validationState={errorInput.length > 1 ? "invalid" : "valid"}
+                        errorMessage={errorInput}
                         value={title}
                         onChange={handleInputChange}
                     />
